@@ -72,3 +72,35 @@ navbar.addEventListener("dblclick", function(){
     click = true;
   }
 });
+
+// Fonctionnalité 6 :
+// si un utilisateur passe sa souris sur le bouton "View" d'une card (n'importe laquelle), celle-ci va se réduire. Cela veut dire que le texte disparaît, l'image n'apparaîtra qu'à 20 % de sa taille d'origine et les boutons "Edit" / "View" restent visibles. Cette fonction sera réversible : s'il repasse sa souris, la card redevient normale
+let cards = [];
+let cardsImg = []; 
+let cardsP = [];
+let cardsViewButton = [];
+let smallCard = [];
+
+for (let i = 0; i < document.querySelectorAll("main .col-md-4 .btn-group").length; i ++){
+  cards.push(document.querySelectorAll("main .card")[i]);
+  cardsImg.push(document.querySelectorAll("main .card .card-img-top")[i]);
+  cardsP.push(document.querySelectorAll("main .card p")[i]);
+  cardsViewButton.push(document.querySelectorAll("main .col-md-4 .btn-group")[i].children[0]);
+  smallCard.push(false);
+
+}  
+for (let i = 0; i < cards.length; i ++){
+    cardsViewButton[i].addEventListener("mouseover", function(){
+      if (smallCard[i] === false){
+        cardsImg[i].style.width = "20%"
+        cardsImg[i].style.margin = 'auto';
+        cardsP[i].style.display = "none"
+        smallCard[i] = true;
+      } else {
+        cardsImg[i].style.width = ""
+        cardsImg[i].style.margin = '';
+        cardsP[i].style.display = ""
+        smallCard[i] = false;
+      }
+  });
+}
