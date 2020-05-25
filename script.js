@@ -57,3 +57,18 @@ secondCardEditButton.addEventListener("click", function(){
 
 // Fonctionnalité 5 :
 // si un utilisateur double clique sur la navbar en haut, tout Bootstrap disparaît et la page s'affiche comme si on avait oublié de mettre le CDN qui la relie au fichier CSS. Si possible, rends cette fonctionnalité réversible (un nouveau double-clic fait tout revenir à la normale).
+
+// 1. Find and store the element we want to listen to events on.
+let linkCDN = document.getElementsByTagName("link")[0]
+let navbar = document.querySelectorAll("header")[0]
+// 2. Add the event listener for the element and function
+let click = true;
+navbar.addEventListener("dblclick", function(){
+  if (click){
+    linkCDN.disabled = true;
+    click = false;
+  } else {
+    linkCDN.disabled = false;
+    click = true;
+  }
+});
